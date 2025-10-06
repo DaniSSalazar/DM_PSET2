@@ -1,0 +1,12 @@
+services:
+  scheduler:
+    image: mageai/mageai
+    volumes:
+      - "./scheduler_data:/home/src"
+    ports:
+      - "6789:6789"
+    command: /app/run_app.sh mage start scheduler
+  
+
+
+
