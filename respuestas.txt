@@ -1,0 +1,55 @@
+Demanda por zona y mes (Pickup y Dropoff)
+
+Se analizaron todos los viajes desde enero de 2015 hasta la fecha.
+
+Pickup: cada mes se listaron las 10 zonas con mayor número de abordajes (PICKUP_ZONE_ID).
+
+Dropoff: cada mes se listaron las 10 zonas con mayor número de descensos (DROPOFF_ZONE_ID).
+
+El resultado permite ver cómo varía la demanda geográfica a lo largo del tiempo, identificando zonas con más actividad de pasajeros tanto para origen como destino.
+
+2️⃣ Ingresos y porcentaje de propina por borough y mes
+
+Se agruparon los viajes por mes y por borough (Manhattan, Queens, Brooklyn, Bronx, Staten Island, etc.).
+
+Se calculó el ingreso total (TOTAL_REVENUE = SUM(TOTAL_AMOUNT)), el total de propinas (TOTAL_TIPS = SUM(TIP_AMOUNT)) y el porcentaje de propinas (TIP_PERCENT = TOTAL_TIPS / TOTAL_REVENUE * 100).
+
+Esto permite ver que, por ejemplo, Manhattan concentra la mayor recaudación y suele tener un porcentaje de propina cercano al 12 %, mientras otros boroughs como Queens y Brooklyn tienen menores valores absolutos y porcentajes algo más bajos.
+
+3️⃣ Velocidad promedio y congestión por franja horaria y borough
+
+Se calculó la velocidad media de cada viaje como distancia / duración (millas por hora).
+
+Se clasificaron los viajes en día (6 h a 18 h) y noche (18 h a 6 h).
+
+Resultado:
+
+Manhattan tiene velocidades bajas (≈17 mph de día y ≈22 mph de noche).
+
+Boroughs periféricos como Bronx o Queens son más rápidos, especialmente de noche.
+
+Se aprecia congestión en horarios diurnos dentro de Manhattan y Brooklyn.
+
+4️⃣ Duración del viaje: percentiles p50 y p90 por zona de origen
+
+Se tomó la duración de cada viaje (minutos entre PICKUP_DATETIME y DROPOFF_DATETIME).
+
+Por cada zona de origen (PULOCATION_ID), se calculó:
+
+P50 = mediana de duración.
+
+P90 = duración que cubre al 90 % de los viajes (solo el 10 % dura más).
+
+Esto permite saber qué zonas tienen viajes más largos en promedio y dónde hay más variabilidad.
+
+5️⃣ Elasticidad temporal: distribución de viajes por día de semana y hora
+
+Se contó el número total de viajes según día de la semana (DAYOFWEEK) y hora de inicio (HOUR).
+
+El resultado es una matriz hora × día que muestra los picos de demanda:
+
+Mayor actividad nocturna en fines de semana.
+
+Alta demanda en horarios laborales en días hábiles.
+
+Patrones útiles para planificación de flotas y tarifas dinámicas.
