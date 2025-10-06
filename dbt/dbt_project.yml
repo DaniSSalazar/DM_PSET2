@@ -1,0 +1,13 @@
+name: 'nyc_taxi'
+version: '1.0.0'
+config-version: 2
+
+profile: 'scheduler'
+
+model-paths: ["models"]
+
+models:
+  nyc_taxi:
+    silver:
+      +schema: SILVER
+      +materialized: table
